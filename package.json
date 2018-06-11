@@ -4,19 +4,18 @@
   "description": "to do app",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
-  },
-  "author": "Fauzan",
-  "license": "ISC",
-  "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
+  "author": "Fauzan",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.5.7",
     "express": "^4.16.3",
+    "morgan": "^1.9.0",
     "mysql": "^2.15.0"
   },
   "devDependencies": {
