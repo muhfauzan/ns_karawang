@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./routes'));
 
-/*
+
 //Database connection
 app.use(function(req, res, next){
 	global.connection = mysql.createConnection({
@@ -37,7 +37,7 @@ app.use(function(req, res, next){
 	connection.connect();
 	next();
 });
-*/
+
 
 app.use('/', index);
 app.use('/api/acts', acts);

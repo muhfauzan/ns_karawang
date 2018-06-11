@@ -3,13 +3,15 @@ var router = express.Router();
 var activityController = require('../controllers/activitycontroller');
 
 /* GET activities listing. */
+/*
 router.use(function(req, res, next){
   res.setHeader('Content-Type', 'application/json');
   next();
 })
 
 router.get('/', activityController.getActivities);
-/*
+*/
+
 router.get('/', function(req, res, next) {
 	connection.query('SELECT * from to_do_list', function (error, results, fields) {
 	  	if(error){
@@ -21,7 +23,6 @@ router.get('/', function(req, res, next) {
 	  	}
   	});
 });
-*/
 
 /* Dummy activities listing. */
 

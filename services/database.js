@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 
-var DB = process.env.DB_NAME;
+//var DB = process.env.DB_NAME;
 
 var state = {
 	pool : null
