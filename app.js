@@ -32,7 +32,7 @@ app.use(function(req, res, next){
 	  	host     : 'localhost',
 	  	user     : 'root',
 	  	password : '',
-  		database : 'test'
+  		database : 'nsk'
 	});
 	connection.connect();
 	next();

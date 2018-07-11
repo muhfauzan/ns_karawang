@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+var dateFormat = require('dateformat');
 
 export default class Activity extends Component {
 	constructor(props) {
@@ -44,7 +45,7 @@ export default class Activity extends Component {
                         <td>{member.site_id} </td>
                         <td>{member.category}</td>
                         <td>{member.activity}</td>
-                        <td>{member.date}</td>
+                        <td>{dateFormat(member.act_date, "fullDate")}</td>
                         {/*<td><a>Edit</a>|<a>Delete</a></td>*/}
                         </tr>
                     )}
