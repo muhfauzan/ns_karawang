@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
-import Routes from './routes';
+import { BrowserRouter } from 'react-router-dom'; // importing from 'react-router'
+//import Routes from './routes';
 import registerServiceWorker from './registerServiceWorker';
-import HeaderComponent from './components/header';
+import App from './containers/App'
+//import ActivityComponent from './components/activity';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import * as ReactBootstrap from 'react-bootstrap';
+//import * as ReactBootstrap from 'react-bootstrap';
 
 ReactDOM.render(
-	<div>
-		<HeaderComponent />
-	</div>,
+	<BrowserRouter>
+		{/* <HeaderComponent /> */}
+		<App />
+		{/* <Routes history={browserHistory} /> */}
+	</BrowserRouter>,
 	document.getElementById('root')
 );
 
