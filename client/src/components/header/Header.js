@@ -9,7 +9,7 @@ render() {
 		    <nav>
 		      <ul>
 		        <li><Link to='/'>Home</Link></li>
-		        <li><Link to='/'>Site</Link></li>
+		        <li><Link to='/sitepag'>Site</Link></li>
 		        <li><Link to='/'>Battery</Link></li>
 		        <li><Link to='/'>Rectifier</Link></li>
 		        <li><Link to='/'>EAS</Link></li>

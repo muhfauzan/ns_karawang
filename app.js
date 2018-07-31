@@ -7,6 +7,7 @@ var logger = require('morgan');
 
 var index = require('./routes/index');
 var acts = require('./routes/acts');
+var sites = require('./routes/sites')
 
 var app = express();
 
@@ -41,9 +42,7 @@ app.use(function(req, res, next){
 
 app.use('/', index);
 app.use('/api/acts', acts);
-app.use('/api/hello', (req, res) => {
-  res.send({ express: 'Hello, NS Karawang' });
-});
+app.use('/api/sites', sites);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

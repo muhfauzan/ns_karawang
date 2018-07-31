@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Input, Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
-export default class MenuExampleVerticalSecondary extends Component {
+export default class MenuHeader extends Component {
 	state = { activeItem: 'home' }
 
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -17,15 +17,15 @@ export default class MenuExampleVerticalSecondary extends Component {
             </Menu.Menu>
                 <Menu.Item as={Link} to="/"
                     name='Home'
-                    active={activeItem === 'Home2'}
+                    active={activeItem === 'Home'}
                     onClick={this.handleItemClick}
                 />
-                <Menu.Item as={Link} to="/site"
+                <Menu.Item as={Link} to="/site_pagination"
                     name='Site'
                     active={activeItem === 'Site'}
                     onClick={this.handleItemClick}
                 />
-                <Menu.Item as={Link} to="/battery"
+                <Menu.Item as={Link} to="/newactivity"
                     name='Battery'
                     active={activeItem === 'Battery'}
                     onClick={this.handleItemClick}
@@ -65,6 +65,7 @@ export default class MenuExampleVerticalSecondary extends Component {
                     active={activeItem === 'Activity'}
                     onClick={this.handleItemClick}
                 />
+                {/*
             <Menu.Item>
               <Input
                 transparent
@@ -72,6 +73,7 @@ export default class MenuExampleVerticalSecondary extends Component {
                 placeholder='Search Site...'
               />
             </Menu.Item>
+                */}
             </Menu>
 
             

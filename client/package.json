@@ -9,12 +9,18 @@
     "react": "^16.4.0",
     "react-bootstrap": "^0.32.1",
     "react-bootstrap-table": "^4.3.1",
+    "react-data-export": "^0.4.2",
     "react-dom": "^16.4.0",
     "react-modal": "^3.4.5",
+    "react-pagination-table": "^2.0.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "semantic-ui-react": "^0.82.0"
+    "react-table": "^6.8.6",
+    "react-validation": "^3.0.7",
+    "reactable": "^1.0.2",
+    "semantic-ui-react": "^0.82.0",
+    "validator": "^10.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

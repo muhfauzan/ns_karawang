@@ -5,7 +5,7 @@ import logo from '../../telkomsel.png';
 //import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 //import { Link } from 'react-router-dom'
 
-export default class HeaderComponent extends Component {
+export default class HeaderLogo extends Component {
 	render() {
 		var headerStyle = {
         backgroundImage: "url(" + logo + ")",

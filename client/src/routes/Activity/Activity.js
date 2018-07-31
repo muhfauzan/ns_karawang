@@ -1,12 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Pagination from '../../components/Pagination';
 var dateFormat = require('dateformat');
 
-export default class Activity extends Component {
+export default class Activity extends React.Component {
 	constructor(props) {
         super(props)
         this.state = {
-            acts: []
-        }
+            acts: [],
+            pageOfItems: []
+        };
+
+        // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+        this.onChangePage = this.onChangePage.bind(this);
+    }
+
+    onChangePage(pageOfItems) {
+        // update state with new page of items
+        this.setState({ pageOfItems: pageOfItems });
     }
 
     componentDidMount() {
@@ -28,11 +38,14 @@ export default class Activity extends Component {
 	render() {
         return (
 	      <div className="container"> 
+            <button type="button" class="btn btn-outline-warning">Create New Activity</button>
+            <p></p>
             <div className="panel panel-default p50 uth-panel">
                 <table className="table table-hover">
                     <thead>
                         <tr>
-                            <th>Site ID</th>
+                            <th>Site Id</th>
+                            <th>Site Name</th>
                             <th>Category</th>
                             <th>Activity</th>
                             <th>Date</th>
@@ -40,9 +53,10 @@ export default class Activity extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                    {this.state.acts.map(member =>
+                    {this.state.pageOfItems.map(member =>
                         <tr key={member.id}>
                         <td>{member.site_id} </td>
+                        <td>{member.site_name} </td>
                         <td>{member.category}</td>
                         <td>{member.activity}</td>
                         <td>{dateFormat(member.act_date, "fullDate")}</td>
@@ -51,6 +65,9 @@ export default class Activity extends Component {
                     )}
                     </tbody>
                 </table>
+                <center>
+                <Pagination items={this.state.acts} onChangePage={this.onChangePage} />
+                </center>
             </div>
         </div>
     	);
