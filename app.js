@@ -7,7 +7,9 @@ var logger = require('morgan');
 
 var index = require('./routes/index');
 var acts = require('./routes/acts');
+var new_act = require('./routes/add_act');
 var sites = require('./routes/sites')
+
 
 var app = express();
 
@@ -39,10 +41,34 @@ app.use(function(req, res, next){
 	next();
 });
 
-
 app.use('/', index);
 app.use('/api/acts', acts);
 app.use('/api/sites', sites);
+
+//rest api to create a new record into mysql database
+app.post('/api/addact', function (req, res) {
+  var siteId = req.body.siteid;
+  var category = req.body.category;
+  var activity = req.body.activity;
+  var actDate = req.body.actdate;
+
+  console.log(JSON.stringify(req.body));
+  {/*
+  console.log(JSON.stringify(req.body.siteid));
+  console.log(JSON.stringify(req.body.category));
+  console.log(JSON.stringify(req.body.activity));
+  console.log(JSON.stringify(req.body.actdate));
+  */}
+  
+  let post = {site_id: siteId, category:category, activity: activity, act_date:actDate};
+  let sql = 'INSERT INTO activity SET ?';
+  connection.query(sql, post, function (error, results, fields) {
+    if (error) throw error;
+    res.end(JSON.stringify(results));
+  });
+
+  //res.redirect("/activity");
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

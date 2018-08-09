@@ -5,6 +5,7 @@ import Activity from './Activity'
 import Site from './Site'
 import Site_Pagination from './Site_Pagination'
 import NewActivity from './NewActivity'
+import NewActivity2 from './NewActivity2'
 
 const Main = () => (
   <main>

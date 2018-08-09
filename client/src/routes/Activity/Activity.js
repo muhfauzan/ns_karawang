@@ -38,7 +38,7 @@ export default class Activity extends React.Component {
 	render() {
         return (
 	      <div className="container"> 
-            <button type="button" class="btn btn-outline-warning">Create New Activity</button>
+            <a href="/newactivity" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add New Activity</a>
             <p></p>
             <div className="panel panel-default p50 uth-panel">
                 <table className="table table-hover">

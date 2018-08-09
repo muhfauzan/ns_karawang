@@ -1,7 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
 
-export default class NewActivity extends React.Component {
+export default class NewActivity2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,8 +55,7 @@ export default class NewActivity extends React.Component {
             }
         } 
     }
-    
-    render() {
+  render() {
         const { siteid, category, activity, actdate } = this.state
         return (
         <div className="container register-form">
