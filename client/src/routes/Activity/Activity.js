@@ -12,6 +12,7 @@ export default class Activity extends React.Component {
 
         // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
         this.onChangePage = this.onChangePage.bind(this);
+        this.deleteActivity = this.deleteActivity.bind(this);
     }
 
     onChangePage(pageOfItems) {
@@ -35,6 +36,37 @@ export default class Activity extends React.Component {
         })
     }
 
+    deleteActivity(activity){
+    console.log("activity: ", activity)
+    var data = {
+        id: activity.id
+    }
+    console.log("data: ", data)
+    fetch("/api/delact", {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(function(response) {
+            if (response.status >= 400) {
+              throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(data) {
+            console.log(data)    
+            if(data === "success"){
+               this.refs.msg.show('Some text or component', {
+                  time: 2000,
+                  type: 'success'
+                })
+            }
+        }).catch(function(err) {
+            console.log(err)
+    });
+}
+
 	render() {
         return (
 	      <div className="container"> 
@@ -49,18 +81,17 @@ export default class Activity extends React.Component {
                             <th>Category</th>
                             <th>Activity</th>
                             <th>Date</th>
-                            {/*<th>Action</th>*/}
                         </tr>
                     </thead>
                     <tbody>
-                    {this.state.pageOfItems.map(member =>
-                        <tr key={member.id}>
-                        <td>{member.site_id} </td>
-                        <td>{member.site_name} </td>
-                        <td>{member.category}</td>
-                        <td>{member.activity}</td>
-                        <td>{dateFormat(member.act_date, "fullDate")}</td>
-                        {/*<td><a>Edit</a>|<a>Delete</a></td>*/}
+                    {this.state.pageOfItems.map(act => 
+                        <tr key={act.id}>
+                            <td>{act.site_id} </td>
+                            <td>{act.site_name} </td>
+                            <td>{act.category}</td>
+                            <td>{act.activity}</td>
+                            <td>{dateFormat(act.act_date, "fullDate")}</td>    
+                            <td><button className="btn btn-danger" onClick={() => this.deleteActivity(act)}>Delete</button></td>                 
                         </tr>
                     )}
                     </tbody>

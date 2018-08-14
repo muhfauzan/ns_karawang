@@ -7,8 +7,9 @@ var logger = require('morgan');
 
 var index = require('./routes/index');
 var acts = require('./routes/acts');
-var new_act = require('./routes/add_act');
 var sites = require('./routes/sites')
+//var new_act = require('./routes/add_act');
+//var del_act = require('./routes/del_act')
 
 
 var app = express();
@@ -45,6 +46,20 @@ app.use('/', index);
 app.use('/api/acts', acts);
 app.use('/api/sites', sites);
 
+app.delete('/api/delact', function (req, res) {
+  var id = req.body.id;
+  console.log(JSON.stringify(req.body));
+  
+  let post = {id: id};
+  let sql = 'DELETE FROM activity WHERE id = '+req.body.id+'';
+  connection.query(sql, function (error, results, fields) {
+    if (error) throw error;
+    res.end(JSON.stringify(results));
+  });
+
+  //res.redirect("/activity");
+});
+
 //rest api to create a new record into mysql database
 app.post('/api/addact', function (req, res) {
   var siteId = req.body.siteid;
@@ -53,12 +68,6 @@ app.post('/api/addact', function (req, res) {
   var actDate = req.body.actdate;
 
   console.log(JSON.stringify(req.body));
-  {/*
-  console.log(JSON.stringify(req.body.siteid));
-  console.log(JSON.stringify(req.body.category));
-  console.log(JSON.stringify(req.body.activity));
-  console.log(JSON.stringify(req.body.actdate));
-  */}
   
   let post = {site_id: siteId, category:category, activity: activity, act_date:actDate};
   let sql = 'INSERT INTO activity SET ?';

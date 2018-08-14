@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router'
 
 export default class NewActivity extends React.Component {
     constructor(props) {
@@ -8,7 +8,8 @@ export default class NewActivity extends React.Component {
             siteid:'',
             category:'',
             activity:'',
-            actdate:''
+            actdate:'',
+            fireRedirect: false
         }
         this.logChange = this.logChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -16,6 +17,7 @@ export default class NewActivity extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault()
+        this.setState({ fireRedirect: true })
         var data = {
             siteid: this.state.siteid,
             category: this.state.category,
@@ -58,6 +60,8 @@ export default class NewActivity extends React.Component {
     }
     
     render() {
+        const { from } = this.props.location.state || '/'
+        const { fireRedirect } = this.state
         const { siteid, category, activity, actdate } = this.state
         return (
         <div className="container register-form">
@@ -100,14 +104,17 @@ export default class NewActivity extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </form>    
+                    </form>  
+                    {/*{fireRedirect && (<Redirect to={from || '/activity'}/>)} */} 
                 </div>
+                {/*
                 <div className="col-md-4">
                     <div className="panel panel-default p25 uth-panel">
                         <div className="uth-panel-head">Tambah-tambah</div>
                         <div className="panel-body uth-panel-body"></div>
                     </div>
                 </div>
+                */}
             </div>
         </div>
         );
