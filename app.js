@@ -46,24 +46,11 @@ app.use('/', index);
 app.use('/api/acts', acts);
 app.use('/api/sites', sites);
 
-app.delete('/api/delact', function (req, res) {
-  var id = req.body.id;
-  console.log(JSON.stringify(req.body));
-  
-  let post = {id: id};
-  let sql = 'DELETE FROM activity WHERE id = '+req.body.id+'';
-  connection.query(sql, function (error, results, fields) {
-    if (error) throw error;
-    res.end(JSON.stringify(results));
-  });
-
-  //res.redirect("/activity");
-});
-
 //rest api to create a new record into mysql database
 app.post('/api/addact', function (req, res) {
   var siteId = req.body.siteid;
   var category = req.body.category;
+
   var activity = req.body.activity;
   var actDate = req.body.actdate;
 
@@ -77,6 +64,34 @@ app.post('/api/addact', function (req, res) {
   });
 
   //res.redirect("/activity");
+});
+
+app.delete('/api/delact', function (req, res) {
+  var id = req.body.id;
+  console.log(JSON.stringify(req.body));
+  
+  //let post = {id: id};
+  let sql = 'DELETE FROM activity WHERE id = '+req.body.id+'';
+  connection.query(sql, function (error, results, fields) {
+    if (error) throw error;
+    res.end(JSON.stringify(results));
+  });
+});
+
+app.post('/api/modact', function (req, res) {
+  var siteId = req.body.siteid;
+  var category = req.body.category;
+  var activity = req.body.activity;
+  var actDate = req.body.actdate;
+
+  console.log(JSON.stringify(req.body));
+  
+  let post = {site_id: siteId, category:category, activity: activity, act_date:actDate};
+  let sql = 'UPDATE activity SET ? WHERE id = '+req.body.id+'';
+  connection.query(sql, post, function (error, results, fields) {
+    if (error) throw error;
+    res.end(JSON.stringify(results));
+  });
 });
 
 // catch 404 and forward to error handler

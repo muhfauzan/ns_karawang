@@ -5,6 +5,7 @@ export default class NewActivity extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id:'',
             siteid:'',
             category:'',
             activity:'',
@@ -19,6 +20,7 @@ export default class NewActivity extends React.Component {
         event.preventDefault()
         this.setState({ fireRedirect: true })
         var data = {
+            id:this.state.id,
             siteid: this.state.siteid,
             category: this.state.category,
             activity: this.state.activity,
@@ -64,7 +66,7 @@ export default class NewActivity extends React.Component {
         const { fireRedirect } = this.state
         const { siteid, category, activity, actdate } = this.state
         return (
-        <div className="container register-form">
+        <div className="container addactivity-form">
             <div className="heading-section">
                 <div className="main-heading">
                     Please insert your <span className="highlightme">activity</span> here
@@ -107,14 +109,12 @@ export default class NewActivity extends React.Component {
                     </form>  
                     {/*{fireRedirect && (<Redirect to={from || '/activity'}/>)} */} 
                 </div>
-                {/*
                 <div className="col-md-4">
                     <div className="panel panel-default p25 uth-panel">
                         <div className="uth-panel-head">Tambah-tambah</div>
                         <div className="panel-body uth-panel-body"></div>
                     </div>
                 </div>
-                */}
             </div>
         </div>
         );
