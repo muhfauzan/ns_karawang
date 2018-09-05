@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import { Input, Menu } from 'semantic-ui-react'
 
 export default class MenuHeader extends Component {
-	state = { activeItem: 'home' }
+	state = { 
+        activeItem: 'home',
+        searchString: ""
+    }
+
 
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
 	render() {
-    	const { activeItem } = this.state
+    	const { activeItem, searchString } = this.state
 
     	return (
     		<Menu pointing secondary>
@@ -66,13 +70,11 @@ export default class MenuHeader extends Component {
                     onClick={this.handleItemClick}
                 />
                 {/*
-            <Menu.Item>
-              <Input
-                transparent
-                icon={{ name: 'search', link: true }}
-                placeholder='Search Site...'
-              />
-            </Menu.Item>
+                <Menu.Item>
+                    <Input 
+                        icon='search' placeholder='Search...' 
+                    />
+                </Menu.Item>
                 */}
             </Menu>
 

@@ -7,6 +7,7 @@ var logger = require('morgan');
 
 var index = require('./routes/index');
 var acts = require('./routes/acts');
+var acts_id = require('./routes/acts_id');
 var sites = require('./routes/sites')
 //var new_act = require('./routes/add_act');
 //var del_act = require('./routes/del_act')
@@ -45,6 +46,7 @@ app.use(function(req, res, next){
 app.use('/', index);
 app.use('/api/acts', acts);
 app.use('/api/sites', sites);
+app.use('/api/act/', acts_id);
 
 //rest api to create a new record into mysql database
 app.post('/api/addact', function (req, res) {
@@ -89,6 +91,16 @@ app.post('/api/modact', function (req, res) {
   let post = {site_id: siteId, category:category, activity: activity, act_date:actDate};
   let sql = 'UPDATE activity SET ? WHERE id = '+req.body.id+'';
   connection.query(sql, post, function (error, results, fields) {
+    if (error) throw error;
+    res.end(JSON.stringify(results));
+  });
+});
+
+app.post('/api/searchact', function (req, res) {
+  console.log(JSON.stringify(req.body));
+  
+  let sql = 'SELECT activity.id, activity.site_id, site.site_name, activity.category, activity.activity, activity.act_date FROM activity INNER JOIN site ON activity.site_id=site.site_id WHERE activity.site_id='+req.body.site_id+'';
+  connection.query(sql, function (error, results, fields) {
     if (error) throw error;
     res.end(JSON.stringify(results));
   });

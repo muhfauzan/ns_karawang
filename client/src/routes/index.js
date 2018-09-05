@@ -4,12 +4,14 @@ import Home from './Home'
 import Activity from './Activity'
 import Site_Pagination from './Site_Pagination'
 import NewActivity from './NewActivity'
+import ActivitySiteId from './ActivitySiteId'
 
 const Main = () => (
   <main>
     <Switch>
       <Route exact path='/' component={Home}/>
       <Route path='/activity' component={Activity}/>
+      <Route path='/activity/:siteid' component={ActivitySiteId}/>
       <Route path='/site_pagination' component={Site_Pagination}/>
       <Route path='/newactivity' component={NewActivity}/>
     </Switch>

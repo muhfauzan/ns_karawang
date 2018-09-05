@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import Pagination from '../../components/Pagination';
 var dateFormat = require('dateformat');
 
-export default class Activity extends React.Component {
+export default class ActivitySiteId extends React.Component {
 	constructor(props) {
         super(props)
         this.state = {
@@ -144,9 +144,7 @@ export default class Activity extends React.Component {
             <a href="/newactivity" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add New Activity</a> 
             
             <p></p>
-            
             <div className="panel panel-default p50 uth-panel">
-                {/*
                 <input
                     type="search"
                     placeholder="Site Id"
@@ -157,7 +155,6 @@ export default class Activity extends React.Component {
             <div className="submit-section">
                 <button class="btn btn-secondary">Search</button>
             </div>
-            */}
                 <table className="table table-hover">
                     <thead>
                         <tr>
