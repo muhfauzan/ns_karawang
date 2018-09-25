@@ -1,30 +1,40 @@
 import React from 'react';
 import Modal from 'react-modal';
-import Pagination from '../../components/Pagination';
+//import Pagination from '../../components/Pagination';
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
 var dateFormat = require('dateformat');
 
-export default class Activity extends React.Component {
+export default class Activity2 extends React.Component {
 	constructor(props) {
         super(props)
         this.state = {
             acts: [],
-            pageOfItems: [],
-            modalIsOpen: false,
-            id:'',
-            siteid:'',
-            category:'',
-            activity:'',
-            actdate:''
+            modalIsOpen: false
         };
 
-        // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
-        this.onChangePage = this.onChangePage.bind(this);
-        this.deleteActivity = this.deleteActivity.bind(this);
         this.openModal = this.openModal.bind(this);
         this.logChange = this.logChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.deleteActivity = this.deleteActivity.bind(this);
+    }
+
+    componentDidMount() {
+        let self = this;
+        fetch('/api/acts', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(data) {
+            self.setState({acts: data.response});
+        }).catch(err => {
+        console.log('caught it!',err);
+        })
     }
 
     openModal(act) {
@@ -36,6 +46,7 @@ export default class Activity extends React.Component {
             activity: act.activity,
             act_date: act.act_date
         });
+        console.log(act)
     }
 
     closeModal() {
@@ -84,27 +95,6 @@ export default class Activity extends React.Component {
         });
     }
 
-    onChangePage(pageOfItems) {
-        // update state with new page of items
-        this.setState({ pageOfItems: pageOfItems });
-    }
-
-    componentDidMount() {
-        let self = this;
-        fetch('/api/acts', {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(data) {
-            self.setState({acts: data.response});
-        }).catch(err => {
-        console.log('caught it!',err);
-        })
-    }
-
     deleteActivity(activity){
     console.log("activity: ", activity)
     var data = {
@@ -138,49 +128,55 @@ export default class Activity extends React.Component {
     }
 
 	render() {
-        //const { from } = this.props.location.state || '/'
-        const { id, siteid, category, activity, actdate } = this.state
         return (
-	      <div className="container"> 
-            <a href="/newactivity" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add New Activity</a> 
-            
-            <p></p>
-            
-            <div className="panel panel-default p50 uth-panel">
-                {/*
-                <input
-                    type="search"
-                    placeholder="Site Id"
-                    //value={searchString}
-                    onChange={this.search}
-                    className="form-control"
-                />
-            <div className="submit-section">
-                <button class="btn btn-secondary">Search</button>
-            </div>
-            */}
-                <table className="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Site Id</th>
-                            <th>Site Name</th>
-                            <th>Category</th>
-                            <th>Activity</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {this.state.pageOfItems.map(act => 
-                        <tr key={act.id}>
-                            <td>{act.site_id} </td>
-                            <td>{act.site_name} </td>
-                            <td>{act.category}</td>
-                            <td>{act.activity}</td>
-                            <td>{dateFormat(act.act_date, "fullDate")}</td>    
-                            <td><button className="btn btn-primary" onClick={() => this.openModal(act)}>Edit</button> <button className="btn btn-danger" onClick={() => this.deleteActivity(act)}>Delete</button></td>                 
-                        </tr>
-                    )}
-                        <Modal
+            <div className="container"> 
+                <a href="/newactivity" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add New Activity</a> 
+                
+                <p></p>
+                <div className="panel panel-default p50 uth-panel">
+                <ReactTable
+                    data={this.state.acts}
+                    filterable
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                    columns={[
+                    {
+                        Header: "Site Id",
+                        accessor: "site_id"              
+                    },
+                    {
+                        Header: "Site Name",
+                        accessor: "site_name"
+                    },
+                    {
+                        Header: "Category",
+                        accessor: "category"              
+                    },
+                    {
+                        Header: "Activity",
+                        accessor: "activity"
+                    },
+                    {
+                        Header: "Date",
+                        accessor: "act_date"
+                    },
+                    {
+                        filterable: false,
+                        width: 82,
+                        Cell: row => (
+                            <button className="btn btn-primary" onClick={() => this.openModal(row.original)}>Edit</button>                             
+                        )
+                    },
+                    {
+                        filterable: false,
+                        width: 100,
+                        Cell: row => (
+                            <button className="btn btn-danger" onClick={() => this.deleteActivity(row.original)}>Delete</button> 
+                        )
+                    }
+                    ]}                    
+                />    
+                <Modal
                             isOpen={this.state.modalIsOpen}
                             onRequestClose={this.closeModal}
                             contentLabel="Edit Activity Modal" >
@@ -217,14 +213,9 @@ export default class Activity extends React.Component {
                                             </div>
                                         </div> 
                                     </form>
-                        </Modal>
-                    </tbody>
-                </table>
-                <center>
-                <Pagination items={this.state.acts} onChangePage={this.onChangePage} />
-                </center>
+                        </Modal>            
+                </div>
             </div>
-        </div>
-    	);
-	}
+        );
+      }
 }

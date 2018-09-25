@@ -81,7 +81,7 @@ export default class Site_Pagination extends React.Component {
                     )}                    
                     </tbody>
                 </table>
-                <ExcelFile element={
+            <ExcelFile element={
                 <button type="button" class="btn btn-primary btn-sm">Download All Data</button>}>
                 <ExcelSheet data={this.state.sites} name="Sheets">
                 <ExcelColumn label="Site Id" value="site_id"/>
