@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Input, Menu } from 'semantic-ui-react'
+//import { Input } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 export default class MenuHeader extends Component {
 	state = { 
@@ -12,7 +13,8 @@ export default class MenuHeader extends Component {
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
 	render() {
-    	const { activeItem, searchString } = this.state
+    	const { activeItem } = this.state
+        //const { searchString } = this.state
 
     	return (
     		<Menu pointing secondary>
@@ -24,7 +26,7 @@ export default class MenuHeader extends Component {
                     active={activeItem === 'Home'}
                     onClick={this.handleItemClick}
                 />
-                <Menu.Item as={Link} to="/site_pagination"
+                <Menu.Item as={Link} to="/site"
                     name='Site'
                     active={activeItem === 'Site'}
                     onClick={this.handleItemClick}
@@ -49,6 +51,7 @@ export default class MenuHeader extends Component {
                     active={activeItem === 'Transport'}
                     onClick={this.handleItemClick}
                 />
+                {/*
                 <Menu.Item as={Link} to="/revenue"
                     name='Revenue'
                     active={activeItem === 'Revenue'}
@@ -59,7 +62,8 @@ export default class MenuHeader extends Component {
                     active={activeItem === 'System'}
                     onClick={this.handleItemClick}
                 />
-                <Menu.Item as={Link} to="/activity2"
+                */}
+                <Menu.Item as={Link} to="/genset"
                     name='Genset'
                     active={activeItem === 'Genset'}
                     onClick={this.handleItemClick}

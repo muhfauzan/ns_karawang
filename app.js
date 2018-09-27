@@ -6,12 +6,14 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 
 var index = require('./routes/index');
+var sites = require('./routes/sites');
+var battery = require('./routes/battery');
+var rectifier = require('./routes/rectifier');
+var eas = require('./routes/eas');
+var transport = require('./routes/transport');
+var genset = require('./routes/genset');
 var acts = require('./routes/acts');
 var acts_id = require('./routes/acts_id');
-var sites = require('./routes/sites')
-//var new_act = require('./routes/add_act');
-//var del_act = require('./routes/del_act')
-
 
 var app = express();
 
@@ -45,8 +47,13 @@ app.use(function(req, res, next){
 
 app.use('/', index);
 app.use('/api/acts', acts);
-app.use('/api/sites', sites);
 app.use('/api/act/', acts_id);
+app.use('/api/sites', sites);
+app.use('/api/battery', battery);
+app.use('/api/rectifier', rectifier);
+app.use('/api/eas', eas);
+app.use('/api/genset', genset);
+app.use('/api/transport', transport);
 
 //rest api to create a new record into mysql database
 app.post('/api/addact', function (req, res) {
@@ -96,15 +103,6 @@ app.post('/api/modact', function (req, res) {
   });
 });
 
-app.post('/api/searchact', function (req, res) {
-  console.log(JSON.stringify(req.body));
-  
-  let sql = 'SELECT activity.id, activity.site_id, site.site_name, activity.category, activity.activity, activity.act_date FROM activity INNER JOIN site ON activity.site_id=site.site_id WHERE activity.site_id='+req.body.site_id+'';
-  connection.query(sql, function (error, results, fields) {
-    if (error) throw error;
-    res.end(JSON.stringify(results));
-  });
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,7 +1,7 @@
 import React from 'react';
 //import { Redirect } from 'react-router'
 
-export default class NewActivity extends React.Component {
+export default class AddActivity extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

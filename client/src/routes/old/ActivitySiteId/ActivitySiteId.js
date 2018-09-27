@@ -138,7 +138,7 @@ export default class ActivitySiteId extends React.Component {
 
 	render() {
         //const { from } = this.props.location.state || '/'
-        const { id, siteid, category, activity, actdate } = this.state
+        //const { id, siteid, category, activity, actdate } = this.state
         return (
 	      <div className="container"> 
             <a href="/newactivity" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add New Activity</a> 
