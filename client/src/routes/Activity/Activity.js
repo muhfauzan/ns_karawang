@@ -23,7 +23,7 @@ export default class Activity extends React.Component {
 
     componentDidMount() {
         let self = this;
-        fetch('/api/acts', {
+        fetch('/api/act', {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -70,7 +70,7 @@ export default class Activity extends React.Component {
             date: this.state.date 
         }
         console.log(data)
-        fetch("/api/modact",  {
+        fetch("/api/modify_activity",  {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -102,7 +102,7 @@ export default class Activity extends React.Component {
         id: activity.id
     }
     console.log("data: ", data)
-    fetch("/api/delact", {
+    fetch("/api/delete_activity", {
         method: 'DELETE',
         headers: {
             Accept: 'application/json',

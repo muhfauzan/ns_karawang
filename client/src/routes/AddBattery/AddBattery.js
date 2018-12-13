@@ -1,15 +1,16 @@
 import React from 'react';
 //import { Redirect } from 'react-router'
 
-export default class AddActivity extends React.Component {
+export default class AddBattery extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id:'',
-            siteid:'',
-            category:'',
-            activity:'',
-            actdate:'',
+            site_id:'',
+            brand:'',
+            bank:'',
+            install_date:'',
+            protection:'',
+            backup_time:'',
             fireRedirect: false
         }
         this.logChange = this.logChange.bind(this)
@@ -20,14 +21,15 @@ export default class AddActivity extends React.Component {
         event.preventDefault()
         this.setState({ fireRedirect: true })
         var data = {
-            id:this.state.id,
-            siteid: this.state.siteid,
-            category: this.state.category,
-            activity: this.state.activity,
-            date: this.state.date 
+            site_id: this.state.site_id,            
+            brand: this.state.brand,
+            bank: this.state.bank,
+            install_date: this.state.install_date,
+            protection: this.state.protection, 
+            backup_time: this.state.backup_time, 
         }
         console.log(data)
-        fetch("/api/add_activity",  {
+        fetch("/api/add_battery",  {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -50,7 +52,7 @@ export default class AddActivity extends React.Component {
         }).catch(function(err) {
             console.log(err)
         });
-        this.props.history.push('/activity');
+        this.props.history.push('/battery');
     }
 
     logChange(e) {
@@ -65,12 +67,12 @@ export default class AddActivity extends React.Component {
     render() {
         //const { from } = this.props.location.state || '/'
         //const { fireRedirect } = this.state
-        const { siteid, category, activity, actdate } = this.state
+        const { site_id, brand, bank, install_date, protection, backup_time } = this.state
         return (
         <div className="container addactivity-form">
             <div className="heading-section">
-                <div className="main-heading">
-                    Please insert your <span className="highlightme">activity</span> here
+                <div className="main-heading">  
+                    Please insert your <span className="highlightme">battery</span> here
                 </div>
             </div>
             <div className="row">
@@ -81,25 +83,37 @@ export default class AddActivity extends React.Component {
                                 <div className="col-md-12">
                                     <div className="form-wrap">
                                         <label>Site Id</label>
-                                        <input onChange={this.logChange} className="form-control" name='siteid' value={siteid}/>                            
+                                        <input onChange={this.logChange} className="form-control" name='site_id' value={site_id}/>                            
                                     </div>
                                 </div>
                                 <div className="col-md-12">
                                     <div className="form-wrap">
-                                        <label>Category</label>
-                                        <input onChange={this.logChange} className="form-control" name='category' value={category}/>
+                                        <label>Brand</label>
+                                        <input onChange={this.logChange} className="form-control" name='brand' value={brand}/>
+                                    </div>
+                                </div>
+                                <div className="col-md-12">
+                                    <div className="form-wrap">
+                                        <label>Bank</label>
+                                        <input onChange={this.logChange} className="form-control" name='bank' value={bank}/>
                                     </div>
                                 </div>
                                  <div className="col-md-12">
                                     <div className="form-wrap">
-                                        <label>Activity</label>
-                                        <input onChange={this.logChange} className="form-control" name='activity' value={activity}/>
+                                        <label>Install Date</label>
+                                        <input onChange={this.logChange} className="form-control" name='install_date' value={install_date}/>
                                     </div>
                                 </div>
                                 <div className="col-md-12">
                                     <div className="form-wrap">
-                                        <label>Date</label>
-                                        <input onChange={this.logChange} className="form-control" name='actdate' value={actdate}/>
+                                        <label>Protection</label>
+                                        <input onChange={this.logChange} className="form-control" name='protection' value={protection}/>
+                                    </div>
+                                </div>
+                                <div className="col-md-12">
+                                    <div className="form-wrap">
+                                        <label>Backup Time</label>
+                                        <input onChange={this.logChange} className="form-control" name='backup_time' value={backup_time}/>
                                     </div>
                                 </div>
                                 <div className="submit-section">
