@@ -1,10 +1,12 @@
 import React from 'react';
-import Modal from 'react-modal';
-//import Pagination from '../../components/Pagination';
+import ReactExport from 'react-data-export';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import Modal from 'react-modal';
 
-//var dateFormat = require('dateformat');
+const ExcelFile = ReactExport.ExcelFile;
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 export default class Activity extends React.Component {
 	constructor(props) {
@@ -214,7 +216,19 @@ export default class Activity extends React.Component {
                                             </div>
                                         </div> 
                                     </form>
-                        </Modal>            
+                        </Modal> 
+
+                <ExcelFile element={
+                <button type="button" class="btn btn-primary btn-sm">Download All Activity Data</button>}>
+                <ExcelSheet data={this.state.acts} name="Activity">
+                <ExcelColumn label="Site Id" value="site_id"/>
+                <ExcelColumn label="Site Name" value="site_name"/>
+                <ExcelColumn label="Category" value="category"/>
+                <ExcelColumn label="Activity" value="activity"/>
+                <ExcelColumn label="Activity Date" value="act_date"/>
+                </ExcelSheet>
+                </ExcelFile>  
+
                 </div>
             </div>
         );

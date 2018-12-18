@@ -1,5 +1,4 @@
 import React from 'react';
-//import Pagination from '../../components/Pagination';
 import ReactExport from 'react-data-export';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
@@ -136,7 +135,7 @@ export default class Battery extends React.Component {
   render() {
         return (
         <div className="container"> 
-            <a href="/addbattery" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add New Site</a> 
+            <a href="/addbattery" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add New Battery</a> 
 
             <p></p>
 
@@ -245,20 +244,15 @@ export default class Battery extends React.Component {
                 </Modal>     
 
             <ExcelFile element={
-                <button type="button" class="btn btn-primary btn-sm">Download All Data</button>}>
-                <ExcelSheet data={this.state.sites} name="Sheets">
+                <button type="button" class="btn btn-primary btn-sm">Download All Battery Data</button>}>
+                <ExcelSheet data={this.state.battery} name="Battery">
                 <ExcelColumn label="Site Id" value="site_id"/>
                 <ExcelColumn label="Site Name" value="site_name"/>
-                <ExcelColumn label="RTP" value="rtp"/>
-                <ExcelColumn label="Cluster" value="cluster"/>
-                <ExcelColumn label="Kecamatan" value="kecamatan"/>
-                <ExcelColumn label="Kabupaten" value="kabupaten"/>
-                <ExcelColumn label="TP" value="tower_prov"/>
-                <ExcelColumn label="Tower Type" value="tower_type"/>
-                <ExcelColumn label="Tower Height" value="tower_high"/>
-                <ExcelColumn label="Site Type" value="site_type"/> 
-                <ExcelColumn label="Latitude" value="latitude"/> 
-                <ExcelColumn label="Longitude" value="longitude"/>
+                <ExcelColumn label="Brand" value="brand"/>
+                <ExcelColumn label="Bank" value="bank"/>
+                <ExcelColumn label="Install Date" value="install_date"/>
+                <ExcelColumn label="Protection" value="protection"/>
+                <ExcelColumn label="Backup Time" value="backup_time"/>
                 </ExcelSheet>
             </ExcelFile>
 

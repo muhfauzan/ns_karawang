@@ -231,20 +231,14 @@ export default class Rectifier extends React.Component {
                 </Modal>     
 
             <ExcelFile element={
-                <button type="button" class="btn btn-primary btn-sm">Download All Data</button>}>
-                <ExcelSheet data={this.state.sites} name="Sheets">
+                <button type="button" class="btn btn-primary btn-sm">Download All Rectifier Data</button>}>
+                <ExcelSheet data={this.state.rectifier} name="Rectifier">
                 <ExcelColumn label="Site Id" value="site_id"/>
                 <ExcelColumn label="Site Name" value="site_name"/>
-                <ExcelColumn label="RTP" value="rtp"/>
-                <ExcelColumn label="Cluster" value="cluster"/>
-                <ExcelColumn label="Kecamatan" value="kecamatan"/>
-                <ExcelColumn label="Kabupaten" value="kabupaten"/>
-                <ExcelColumn label="TP" value="tower_prov"/>
-                <ExcelColumn label="Tower Type" value="tower_type"/>
-                <ExcelColumn label="Tower Height" value="tower_high"/>
-                <ExcelColumn label="Site Type" value="site_type"/> 
-                <ExcelColumn label="Latitude" value="latitude"/> 
-                <ExcelColumn label="Longitude" value="longitude"/>
+                <ExcelColumn label="Brand" value="brand"/>
+                <ExcelColumn label="Entity" value="entity"/>
+                <ExcelColumn label="Capacity" value="capacity"/>
+                <ExcelColumn label="Current Load" value="current_load"/>
                 </ExcelSheet>
             </ExcelFile>
 

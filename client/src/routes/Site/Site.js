@@ -318,8 +318,8 @@ export default class Site extends React.Component {
                 </Modal>
 
             <ExcelFile element={
-                <button type="button" class="btn btn-primary btn-sm">Download All Data</button>}>
-                <ExcelSheet data={this.state.sites} name="Sheets">
+                <button type="button" class="btn btn-primary btn-sm">Download All Site Data</button>}>
+                <ExcelSheet data={this.state.sites} name="Site">
                 <ExcelColumn label="Site Id" value="site_id"/>
                 <ExcelColumn label="Site Name" value="site_name"/>
                 <ExcelColumn label="RTP" value="rtp"/>
