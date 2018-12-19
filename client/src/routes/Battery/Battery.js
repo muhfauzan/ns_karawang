@@ -148,6 +148,20 @@ export default class Battery extends React.Component {
                     className="-striped -highlight"
                     columns={[
                     {
+                        filterable: false,
+                        width: 82,
+                        Cell: row => (
+                            <button className="btn btn-primary" onClick={() => this.openModal(row.original)}>Edit</button>                             
+                        )
+                    },
+                    {
+                        filterable: false,
+                        width: 100,
+                        Cell: row => (
+                            <button className="btn btn-danger" onClick={() => this.deleteBattery(row.original)}>Delete</button> 
+                        )
+                    },
+                    {
                         Header: "Site Id",
                         accessor: "site_id"              
                     },
@@ -174,21 +188,7 @@ export default class Battery extends React.Component {
                     {
                         Header: "Backup Time",
                         accessor: "backup_time"
-                    },
-                    {
-                        filterable: false,
-                        width: 82,
-                        Cell: row => (
-                            <button className="btn btn-primary" onClick={() => this.openModal(row.original)}>Edit</button>                             
-                        )
-                    },
-                    {
-                        filterable: false,
-                        width: 100,
-                        Cell: row => (
-                            <button className="btn btn-danger" onClick={() => this.deleteBattery(row.original)}>Delete</button> 
-                        )
-                    }
+                    }                    
                     ]}                    
                 />
 

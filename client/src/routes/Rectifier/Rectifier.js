@@ -145,6 +145,20 @@ export default class Rectifier extends React.Component {
                     className="-striped -highlight"
                     columns={[
                     {
+                        filterable: false,
+                        width: 82,
+                        Cell: row => (
+                            <button className="btn btn-primary" onClick={() => this.openModal(row.original)}>Edit</button>                             
+                        )
+                    },
+                    {
+                        filterable: false,
+                        width: 100,
+                        Cell: row => (
+                            <button className="btn btn-danger" onClick={() => this.deleteRectifier(row.original)}>Delete</button> 
+                        )
+                    },
+                    {
                         Header: "Site Id",
                         accessor: "site_id"              
                     },
@@ -167,21 +181,7 @@ export default class Rectifier extends React.Component {
                     {
                         Header: "Current Load",
                         accessor: "current_load"              
-                    },
-                    {
-                        filterable: false,
-                        width: 82,
-                        Cell: row => (
-                            <button className="btn btn-primary" onClick={() => this.openModal(row.original)}>Edit</button>                             
-                        )
-                    },
-                    {
-                        filterable: false,
-                        width: 100,
-                        Cell: row => (
-                            <button className="btn btn-danger" onClick={() => this.deleteRectifier(row.original)}>Delete</button> 
-                        )
-                    }
+                    }                    
                     ]}                    
                 />
 

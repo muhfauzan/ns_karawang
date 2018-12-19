@@ -145,6 +145,20 @@ export default class Eas extends React.Component {
                     className="-striped -highlight"
                     columns={[
                     {
+                        filterable: false,
+                        width: 82,
+                        Cell: row => (
+                            <button className="btn btn-primary" onClick={() => this.openModal(row.original)}>Edit</button>                                                         
+                        )
+                    },
+                    {
+                        filterable: false,
+                        width: 100,
+                        Cell: row => (
+                            <button className="btn btn-danger" onClick={() => this.deleteBattery(row.original)}>Delete</button>  
+                        )
+                    },
+                    {
                         Header: "Site Id",
                         accessor: "site_id"              
                     },
@@ -163,20 +177,6 @@ export default class Eas extends React.Component {
                     {
                         Header: "Battery Stolen",
                         accessor: "battery_stolen"
-                    },
-                    {
-                        filterable: false,
-                        width: 82,
-                        Cell: row => (
-                            <button className="btn btn-primary" onClick={() => this.openModal(row.original)}>Edit</button>                                                         
-                        )
-                    },
-                    {
-                        filterable: false,
-                        width: 100,
-                        Cell: row => (
-                            <button className="btn btn-danger" onClick={() => this.deleteBattery(row.original)}>Delete</button>  
-                        )
                     }
                     ]}                    
                 />

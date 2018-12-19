@@ -144,6 +144,20 @@ export default class Activity extends React.Component {
                     className="-striped -highlight"
                     columns={[
                     {
+                        filterable: false,
+                        width: 82,
+                        Cell: row => (
+                            <button className="btn btn-primary" onClick={() => this.openModal(row.original)}>Edit</button>                             
+                        )
+                    },
+                    {
+                        filterable: false,
+                        width: 100,
+                        Cell: row => (
+                            <button className="btn btn-danger" onClick={() => this.deleteActivity(row.original)}>Delete</button> 
+                        )
+                    },
+                    {
                         Header: "Site Id",
                         accessor: "site_id"              
                     },
@@ -162,21 +176,7 @@ export default class Activity extends React.Component {
                     {
                         Header: "Date",
                         accessor: "act_date"
-                    },
-                    {
-                        filterable: false,
-                        width: 82,
-                        Cell: row => (
-                            <button className="btn btn-primary" onClick={() => this.openModal(row.original)}>Edit</button>                             
-                        )
-                    },
-                    {
-                        filterable: false,
-                        width: 100,
-                        Cell: row => (
-                            <button className="btn btn-danger" onClick={() => this.deleteActivity(row.original)}>Delete</button> 
-                        )
-                    }
+                    }                    
                     ]}                    
                 />    
                 <Modal
